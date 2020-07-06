@@ -25,5 +25,7 @@ Route::resource('/catagories','CatagoriesController');
 Route::resource('/products','ProductsController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/addToCart/{id}', 'ProductsController@getAddCart')->name('products.addToCart');
+Route::get('/reduceByOne/{id}', 'ProductsController@reduceByOne')->name('products.reduceByOne');
+Route::get('/removeAll/{id}', 'ProductsController@removeAll')->name('products.removeAll');
 Route::get('/productsShoppingCart', 'ProductsController@getCart')->name('productsShoppingCart');
 Route::post('/search', 'ProductsController@searchName')->name('search');
