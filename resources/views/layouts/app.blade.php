@@ -103,7 +103,24 @@
         </nav>
 
         <main class="py-4">
-        <br><br><br><br><br><br>
+        <div class="container">
+        <br> <br> <br> <br>
+            @if($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-group">
+                    @foreach($errors->all() as $error)
+                    <li class="list-group-item text-danger">
+                        {{$error}}
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{session()->get('success')}}
+            </div>
+            @endif 
             @yield('content')
         </main>
     </div>

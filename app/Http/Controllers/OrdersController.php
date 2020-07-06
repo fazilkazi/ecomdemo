@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Order;
+use Auth;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class OrdersController extends Controller
 {
@@ -12,6 +16,36 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+     public function checkout()
+     {
+        
+        
+        $oldCart= Session::has('cart') ? Session::get('cart') :null;
+        if(!$oldCart)
+        {
+            return redirect(route('home'));
+        }
+        $cart = new Cart($oldCart);
+        $products=$cart->items;
+        foreach($products as $product)
+        {
+            Order::create([
+                'user_id' => Auth::user()->id,
+                'product_id' => $product['item']['id'],
+                'price' => $product['item']['price'],
+                'qty' => $product['qty'],
+                'total_price' =>$product['price'],
+            ]);
+        }
+       Session::forget('cart');  
+       session()->flash('success','Purchased  Successfully');
+       return redirect()->back();
+
+     }
     public function index()
     {
         //

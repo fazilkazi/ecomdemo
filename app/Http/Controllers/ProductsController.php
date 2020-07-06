@@ -35,6 +35,8 @@ class ProductsController extends Controller
         $cart = new Cart($oldCart);
         $cart->add($product,$product->id);
         $request->session()->put('cart',$cart);
+        session()->flash('success','Added  Successfully');
+
         return redirect()->back();
     }
     public function reduceByOne($id)
@@ -44,6 +46,8 @@ class ProductsController extends Controller
         $cart->reduce($id);
 
         Session::put('cart',$cart);
+        session()->flash('success','Reduced  Successfully');
+
         return redirect()->back();
 
 
@@ -55,6 +59,8 @@ class ProductsController extends Controller
         $cart->remove($id);
 
         Session::put('cart',$cart);
+        session()->flash('success','Removed  Successfully');
+
         return redirect()->back();
 
     }

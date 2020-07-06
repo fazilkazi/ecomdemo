@@ -18,7 +18,8 @@ class CreateOrdersTable extends Migration
             $table->string('user_id');
             $table->string('product_id');
             $table->bigInteger('price');
-            
+            $table->bigInteger('qty');
+            $table->bigInteger('total_price');            
             $table->boolean('is_complete')->default(false);
             $table->timestamps();
         });

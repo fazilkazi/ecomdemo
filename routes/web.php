@@ -22,8 +22,10 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('/catagories','CatagoriesController');
+Route::resource('/orders','OrdersController');
 Route::resource('/products','ProductsController');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/checkout', 'OrdersController@checkout')->name('checkout');
 Route::get('/addToCart/{id}', 'ProductsController@getAddCart')->name('products.addToCart');
 Route::get('/reduceByOne/{id}', 'ProductsController@reduceByOne')->name('products.reduceByOne');
 Route::get('/removeAll/{id}', 'ProductsController@removeAll')->name('products.removeAll');
