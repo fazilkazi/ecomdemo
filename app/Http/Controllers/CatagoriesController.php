@@ -46,7 +46,8 @@ class CatagoriesController extends Controller
      */
     public function show(Catagory $catagory)
     {
-        //
+       
+        return view('home')->with(['catagory' => $catagory]);
     }
 
     /**
